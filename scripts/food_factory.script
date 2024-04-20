@@ -1,0 +1,14 @@
+function init(self)
+	self.food_count = 0
+	math.randomseed(os.time())
+	timer.delay(0.5, true, create_food)
+end
+
+function create_food(self)
+	if self.food_count == 100 then
+		return
+	end
+	local p = vmath.vector3( math.random()*40-20, 0.0,  math.random()*40-20)
+	local id = factory.create("#factory", p, nil, {}, 0.5)
+	self.food_count  = self.food_count+1
+end

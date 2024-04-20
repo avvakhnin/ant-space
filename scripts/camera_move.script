@@ -1,0 +1,7 @@
+
+
+function update(self, dt)
+	local position = go.get_position("/command/ant")
+	position.y = 10
+	go.set_position(position)
+end

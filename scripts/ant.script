@@ -1,0 +1,28 @@
+
+
+local forward_speed = vmath.vector3(0.0, 0.0, -1.0)
+local speed = vmath.vector3(0.0, 0.0, -1.0)
+
+local directions = {
+	[hash("left")] = vmath.quat_rotation_y(math.pi/2),
+	[hash("right")] = vmath.quat_rotation_y(-math.pi/2),
+	[hash("up")] = vmath.quat_rotation_y(0),
+	[hash("down")] = vmath.quat_rotation_y(math.pi),
+}
+
+
+function init()
+	msg.post(".", "acquire_input_focus")
+end
+
+function update(self, dt)
+	go.set_position( go.get_position() + speed*dt)
+end
+
+
+function on_input(self, action_id, action)
+	if directions[action_id]~= nil then
+		speed = vmath.rotate(directions[action_id], forward_speed) 
+		go.set_rotation(directions[action_id])
+	end
+end

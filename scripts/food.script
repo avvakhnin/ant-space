@@ -1,0 +1,8 @@
+go.property("color",  vmath.vector4())
+go.property("category", 1)
+
+function init(self)
+	self.color =  vmath.vector4(math.random(), math.random(), math.random(), 0)
+	self.category = 2
+	go.set("#model", "color", self.color)
+end

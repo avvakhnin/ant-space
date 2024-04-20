@@ -1,0 +1,16 @@
+function init(self)
+	-- set material color
+	go.set("#model", "color", vmath.vector4(0.9, 0.3, 0.1, 1))
+	
+	self.food = {}
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("add_food") then
+		for k, v in pairs(message.food) do
+			table.insert(self.food, v)
+		end
+		msg.post("/gui", "set_score", {score = #self.food})
+	end
+	
+end
